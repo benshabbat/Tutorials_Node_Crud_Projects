@@ -3,32 +3,32 @@ import express from 'express';
 const app = express();
 const PORT = 3000;
 
-// Middleware לקריאת JSON בבקשות
+// Middleware to parse JSON requests
 app.use(express.json());
 
-// אחסון זמני בזיכרון (במקום מסד נתונים)
+// In-memory storage (instead of database)
 let users = [
-  { id: 1, name: 'דוד כהן', email: 'david@example.com' },
-  { id: 2, name: 'שרה לוי', email: 'sarah@example.com' }
+  { id: 1, name: 'John Doe', email: 'john@example.com' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
 ];
 
 let nextId = 3;
 
-// בדיקת שרת פעיל
+// Server health check
 app.get('/', (req, res) => {
   res.json({ 
-    message: 'ברוכים הבאים ל-CRUD API',
+    message: 'Welcome to CRUD API',
     endpoints: {
-      'GET /users': 'קבלת כל המשתמשים',
-      'GET /users/:id': 'קבלת משתמש ספציפי',
-      'POST /users': 'יצירת משתמש חדש',
-      'PUT /users/:id': 'עדכון משתמש קיים',
-      'DELETE /users/:id': 'מחיקת משתמש'
+      'GET /users': 'Get all users',
+      'GET /users/:id': 'Get specific user',
+      'POST /users': 'Create new user',
+      'PUT /users/:id': 'Update existing user',
+      'DELETE /users/:id': 'Delete user'
     }
   });
 });
 
-// READ - קבלת כל המשתמשים
+// READ - Get all users
 app.get('/users', (req, res) => {
   res.json({
     success: true,
@@ -37,7 +37,7 @@ app.get('/users', (req, res) => {
   });
 });
 
-// READ - קבלת משתמש ספציפי
+// READ - Get specific user
 app.get('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find(u => u.id === id);
@@ -45,7 +45,7 @@ app.get('/users/:id', (req, res) => {
   if (!user) {
     return res.status(404).json({
       success: false,
-      message: 'משתמש לא נמצא'
+      message: 'User not found'
     });
   }
   
@@ -55,15 +55,15 @@ app.get('/users/:id', (req, res) => {
   });
 });
 
-// CREATE - יצירת משתמש חדש
+// CREATE - Create new user
 app.post('/users', (req, res) => {
   const { name, email } = req.body;
   
-  // בדיקת תקינות
+  // Validation
   if (!name || !email) {
     return res.status(400).json({
       success: false,
-      message: 'נא לספק שם ואימייל'
+      message: 'Please provide name and email'
     });
   }
   
@@ -77,12 +77,12 @@ app.post('/users', (req, res) => {
   
   res.status(201).json({
     success: true,
-    message: 'משתמש נוצר בהצלחה',
+    message: 'User created successfully',
     data: newUser
   });
 });
 
-// UPDATE - עדכון משתמש קיים
+// UPDATE - Update existing user
 app.put('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { name, email } = req.body;
@@ -92,22 +92,22 @@ app.put('/users/:id', (req, res) => {
   if (userIndex === -1) {
     return res.status(404).json({
       success: false,
-      message: 'משתמש לא נמצא'
+      message: 'User not found'
     });
   }
   
-  // עדכון השדות שסופקו
+  // Update provided fields
   if (name) users[userIndex].name = name;
   if (email) users[userIndex].email = email;
   
   res.json({
     success: true,
-    message: 'משתמש עודכן בהצלחה',
+    message: 'User updated successfully',
     data: users[userIndex]
   });
 });
 
-// DELETE - מחיקת משתמש
+// DELETE - Delete user
 app.delete('/users/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const userIndex = users.findIndex(u => u.id === id);
@@ -115,7 +115,7 @@ app.delete('/users/:id', (req, res) => {
   if (userIndex === -1) {
     return res.status(404).json({
       success: false,
-      message: 'משתמש לא נמצא'
+      message: 'User not found'
     });
   }
   
@@ -124,13 +124,13 @@ app.delete('/users/:id', (req, res) => {
   
   res.json({
     success: true,
-    message: 'משתמש נמחק בהצלחה',
+    message: 'User deleted successfully',
     data: deletedUser
   });
 });
 
-// הפעלת השרת
+// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 השרת פועל על http://localhost:${PORT}`);
-  console.log(`📚 לראות את כל ה-endpoints: http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`📚 View all endpoints: http://localhost:${PORT}`);
 });
