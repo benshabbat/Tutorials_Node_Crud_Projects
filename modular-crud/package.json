@@ -1,0 +1,17 @@
+{
+  "name": "modular-crud-tutorial",
+  "version": "1.0.0",
+  "description": "Modular CRUD application with separated concerns using Node.js ES modules",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["crud", "modular", "mvc", "nodejs", "express", "es-modules"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
