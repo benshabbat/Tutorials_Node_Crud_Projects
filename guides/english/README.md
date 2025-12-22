@@ -2,6 +2,16 @@
 
 ## English
 
+### [beginners-guide.md](beginners-guide.md)
+Complete beginner's guide to Node.js and Express:
+- Step-by-step installation
+- First server creation
+- CRUD basics
+- Real examples
+- Perfect for absolute beginners
+
+---
+
 ### [quick-start.md](quick-start.md)
 Quick guide to get started with Node.js and Express. Perfect for:
 - Fast setup
@@ -22,13 +32,25 @@ Comprehensive guide on Parameters in Express:
 
 ---
 
+### [fs-promises-guide.md](fs-promises-guide.md)
+File System Promises guide:
+- Working with files using async/await
+- Read/Write operations
+- CRUD with file storage
+- Error handling
+- Best practices
+
+---
+
 ## Recommended Learning Path
 
-1. **Start** → `quick-start.md`
-2. **Deep Dive** → `params-guide.md`
-3. **Practice** → Go to `exercises/english/`
-4. **Examples** → Go to `examples/english/`
-5. **Projects** → Go to `projects/`
+1. **Absolute Beginners** → `beginners-guide.md`
+2. **Quick Start** → `quick-start.md`
+3. **Parameters** → `params-guide.md`
+4. **File System** → `fs-promises-guide.md`
+5. **Practice** → Go to `exercises/english/`
+6. **Examples** → Go to `examples/english/`
+7. **Projects** → Go to `projects/`
 
 ---
 

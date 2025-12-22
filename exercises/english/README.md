@@ -2,6 +2,16 @@
 
 ## English
 
+### [general-exercises.md](general-exercises.md)
+General exercises for beginners:
+- Basic CRUD operations
+- Validation
+- Error handling
+- Creating APIs from scratch
+- Multiple difficulty levels
+
+---
+
 ### [params-exercises.md](params-exercises.md)
 10 practical exercises on Parameters:
 1. **Basic Route Parameters** - User profile
@@ -14,6 +24,16 @@
 8. **Combine Everything** - Complex endpoint
 9. **Full Validation** - User registration
 10. **Mini Project** - To-Do List API
+
+---
+
+### [fs-promises-exercises.md](fs-promises-exercises.md)
+8 exercises on File System:
+- Contact book API
+- To-Do list with files
+- Logging system
+- Backup system
+- Multiple difficulty levels
 
 **Bonus:**
 - Rate Limiting
@@ -46,8 +66,10 @@
 
 ## Recommended Path
 
-1. **Learn** → Read guide in `guides/english/params-guide.md`
-2. **See example** → Run `examples/english/params-examples.js`
+1. **Start** → `general-exercises.md` (beginners)
+2. **Parameters** → Read `guides/english/params-guide.md` → Do `params-exercises.md`
+3. **File System** → Read `guides/english/fs-promises-guide.md` → Do `fs-promises-exercises.md`
+4. **Build** → Go to `projects/` and build real applications
 3. **Practice** → Do exercises from this file
 4. **Build project** → Create something yourself!
 

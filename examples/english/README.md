@@ -2,6 +2,22 @@
 
 ## English
 
+### [basic-server.js](basic-server.js)
+Simple Express server:
+- Basic setup
+- Simple endpoints
+- Perfect first example
+
+---
+
+### [simple-fs-server.js](simple-fs-server.js)
+Server with file system:
+- Reading files
+- Writing files
+- Basic file operations
+
+---
+
 ### [params-examples.js](params-examples.js)
 Practical examples for all Parameter types:
 - Route Parameters - `/users/:id`
@@ -11,6 +27,16 @@ Practical examples for all Parameter types:
 - Filtering, sorting, pagination
 - Full validation
 - 15+ ready-to-use endpoints
+
+---
+
+### [fs-promises-example.js](fs-promises-example.js)
+Complete CRUD with file storage:
+- Full CRUD operations
+- fs/promises usage
+- Backup system
+- Logging
+- Statistics
 
 **How to run:**
 ```bash
