@@ -31,9 +31,11 @@ Tutorials_Node_Crud_Projects/
 │       └── params-exercises.md  # תרגילי Parameters
 │
 └── 🚀 projects/                  # דוגמאות פרויקטים מלאים
+    ├── basic/                   # פרויקטים בסיסיים
+    │   └── simple-crud/        # CRUD בסיסי עם Array
+    ├── fs-promises-crud/        # CRUD עם שמירה בקבצים
     ├── modular-crud/            # מבנה CRUD מודולרי
-    ├── modular-with-services/   # CRUD עם שכבת Services
-    └── basic/                   # פרויקטים בסיסיים (עתידי)
+    └── modular-with-services/   # CRUD עם שכבת Services
 ```
 
 ## 🎓 מסלול הלמידה
@@ -48,9 +50,16 @@ Tutorials_Node_Crud_Projects/
 - הרץ: [`examples/hebrew/params-examples.js`](examples/hebrew/params-examples.js)
 - תרגל: [`exercises/hebrew/params-exercises.md`](exercises/hebrew/params-exercises.md)
 
-### 3️⃣ בנה פרויקטים
-- התחל עם: [`projects/modular-crud/`](projects/modular-crud/)
-- התקדם ל: [`projects/modular-with-services/`](projects/modular-with-services/)
+### 3️⃣ למד על File System Promises
+- קרא: [`guides/hebrew/fs-promises-guide.md`](guides/hebrew/fs-promises-guide.md)
+- הרץ: [`examples/hebrew/fs-promises-example.js`](examples/hebrew/fs-promises-example.js)
+- תרגל: [`exercises/hebrew/fs-promises-exercises.md`](exercises/hebrew/fs-promises-exercises.md)
+
+### 4️⃣ בנה פרויקטים
+1. **למתחילים:** [`projects/basic/simple-crud/`](projects/basic/simple-crud/) - CRUD בסיסי עם Array
+2. **בינוני:** [`projects/fs-promises-crud/`](projects/fs-promises-crud/) - CRUD עם שמירה בקבצים
+3. **מתקדם:** [`projects/modular-crud/`](projects/modular-crud/) - מבנה מודולרי מלא
+4. **מומחה:** [`projects/modular-with-services/`](projects/modular-with-services/) - עם שכבת Services
 
 ## 🚀 התחלה מהירה
 
@@ -74,6 +83,20 @@ node examples/hebrew/params-examples.js
 **פרויקט CRUD מודולרי:**
 ```bash
 cd projects/modular-crud
+npm install
+npm start
+```
+
+**פרויקט בסיסי למתחילים:**
+```bash
+cd projects/basic/simple-crud
+npm install
+npm start
+```
+
+**פרויקט עם File System:**
+```bash
+cd projects/fs-promises-crud
 npm install
 npm start
 ```
@@ -123,7 +146,31 @@ DELETE /users/:userId/orders/:orderId?reason=cancelled
 
 ## 📝 דוגמאות פרויקטים
 
-### Modular CRUD
+### 1. Simple CRUD - למתחילים
+**רמה:** ⭐ בסיסי
+
+אפליקציית CRUD בסיסית עם:
+- ✅ שמירה בזיכרון (Array)
+- ✅ פעולות CRUD פשוטות
+- ✅ לא דורש ידע קודם
+- ✅ מתאים למתחילים לחלוטין
+
+📂 מיקום: [`projects/basic/simple-crud/`](projects/basic/simple-crud/)
+
+### 2. FS Promises CRUD - בינוני
+**רמה:** ⭐⭐ בינוני
+
+אפליקציית CRUD עם:
+- ✅ שמירה קבועה בקבצים
+- ✅ קריאה/כתיבה עם fs/promises
+- ✅ טיפול בשגיאות קבצים
+- ✅ timestamps ומידע נוסף
+
+📂 מיקום: [`projects/fs-promises-crud/`](projects/fs-promises-crud/)
+
+### 3. Modular CRUD - מתקדם
+**רמה:** ⭐⭐⭐ מתקדם
+
 אפליקציית CRUD מובנית היטב עם:
 - Controllers
 - Routes
@@ -131,11 +178,17 @@ DELETE /users/:userId/orders/:orderId?reason=cancelled
 - Middleware
 - טיפול בשגיאות
 
-### Modular with Services
+📂 מיקום: [`projects/modular-crud/`](projects/modular-crud/)
+
+### 4. Modular with Services - מומחה
+**רמה:** ⭐⭐⭐⭐ מומחה
+
 מבנה מתקדם עם תוספת:
 - שכבת Service ללוגיקה עסקית
 - הפרדה טובה יותר בין שכבות
 - ארכיטקטורה ניתנת להרחבה
+
+📂 מיקום: [`projects/modular-with-services/`](projects/modular-with-services/)
 
 ## 💡 טיפים
 

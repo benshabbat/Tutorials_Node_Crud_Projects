@@ -1,0 +1,17 @@
+{
+  "name": "simple-crud-basic",
+  "version": "1.0.0",
+  "description": "פרויקט CRUD פשוט למתחילים",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["node", "express", "crud", "beginner"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

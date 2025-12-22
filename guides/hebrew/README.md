@@ -32,13 +32,34 @@
 
 ---
 
+### [fs-promises-guide.md](fs-promises-guide.md)
+מדריך מקיף על File System Promises:
+- עבודה עם קבצים באופן אסינכרוני
+- async/await - תחביר נקי
+- CRUD עם קבצים (יצירה, קריאה, עדכון, מחיקה)
+- שילוב עם Express
+- Best Practices ו-Error Handling
+- דוגמאות מעשיות מלאות
+
+**מומלץ למי שרוצה לעבוד עם קבצים לפני מעבר למסד נתונים!**
+
+---
+
 ## מסלול למידה מומלץ
 
+### מתחילים
 1. **מתחילים** → `beginners-guide.md`
 2. **התעמקות** → `params-guide.md`
-3. **תרגול** → עבור לתיקיית `exercises/hebrew/`
-4. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
-5. **פרויקטים** → עבור לתיקיית `projects/`
+3. **עבודה עם קבצים** → `fs-promises-guide.md`
+4. **תרגול** → עבור לתיקיית `exercises/hebrew/`
+5. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
+6. **פרויקטים** → עבור לתיקיית `projects/`
+
+### מסלול מהיר
+1. `quick-guide.md` → הקדמה מהירה
+2. `params-guide.md` → למד parameters
+3. `fs-promises-guide.md` → עבוד עם קבצים
+4. `exercises/hebrew/` → תרגל!
 
 ---
 

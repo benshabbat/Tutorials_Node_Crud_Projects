@@ -57,6 +57,43 @@ PUT  /users/:id                     # עדכון משתמש
 
 ---
 
+### [fs-promises-example.js](fs-promises-example.js)
+דוגמה מלאה לעבודה עם File System Promises:
+- CRUD מלא עם שמירה בקבצים
+- מערכת Logging מתקדמת
+- Backup אוטומטי כל 5 דקות
+- ניקוי backups ישנים
+- סטטיסטיקות ומידע על המערכת
+- Error handling מקצועי
+- 10+ endpoints מוכנים
+
+**איך להריץ:**
+```bash
+node fs-promises-example.js
+# עכשיו פתח: http://localhost:3000
+```
+
+**מה זה כולל:**
+```
+✅ שמירת משתמשים ב-JSON
+✅ מערכת לוגים מלאה
+✅ Backup אוטומטי
+✅ סטטיסטיקות מערכת
+✅ טיפול מקצועי בשגיאות
+```
+
+**Endpoints מרכזיים:**
+```
+GET    /              # מידע על ה-API
+GET    /users         # כל המשתמשים
+POST   /users         # צור משתמש
+GET    /stats         # סטטיסטיקות
+POST   /backup        # צור backup
+GET    /logs          # הצג logs
+```
+
+---
+
 ## איך להתחיל?
 
 1. **התקן תלויות** (אם עדיין לא):

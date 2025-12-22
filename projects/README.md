@@ -1,9 +1,42 @@
 # 🚀 Projects - פרויקטים
 
+# 🚀 Projects - פרויקטים
+
+## 📊 רמות קושי
+
+| פרויקט | רמה | זמן למידה | מה לומדים |
+|--------|-----|-----------|-----------|
+| [Simple CRUD](basic/simple-crud/) | ⭐ בסיסי | 30 דקות | Express, CRUD בסיסי |
+| [FS Promises CRUD](fs-promises-crud/) | ⭐⭐ בינוני | 1-2 שעות | File System, async/await |
+| [Modular CRUD](modular-crud/) | ⭐⭐⭐ מתקדם | 2-3 שעות | MVC, ארגון קוד |
+| [Modular with Services](modular-with-services/) | ⭐⭐⭐⭐ מומחה | 3-4 שעות | Services, ארכיטקטורה |
+
 ## Available Projects
 
-### [modular-crud/](../modular-crud/)
-**CRUD מודולרי מובנה**
+### 1. [basic/simple-crud/](basic/simple-crud/)
+**⭐ CRUD בסיסי למתחילים**
+
+הפרויקט הכי פשוט! לומדים:
+- ✅ הקמת שרת Express
+- ✅ פעולות CRUD עם Array
+- ✅ ללא תלויות נוספות
+- ✅ מתאים למתחילים מוחלטים
+
+---
+
+### 2. [fs-promises-crud/](fs-promises-crud/)
+**⭐⭐ CRUD עם שמירה בקבצים**
+
+למד שמירת נתונים:
+- ✅ שמירה קבועה בקבצי JSON
+- ✅ קריאה/כתיבה אסינכרונית
+- ✅ טיפול בשגיאות קבצים
+- ✅ עבודה עם File System API
+
+---
+
+### 3. [modular-crud/](modular-crud/)
+**⭐⭐⭐ CRUD מודולרי מובנה**
 
 פרויקט CRUD מאורגן עם מבנה נכון:
 - **Controllers** - לוגיקה של endpoints
@@ -16,8 +49,8 @@
 
 ---
 
-### [modular-with-services/](../modular-with-services/)
-**CRUD עם Services Layer**
+### 4. [modular-with-services/](modular-with-services/)
+**⭐⭐⭐⭐ CRUD עם Services Layer**
 
 פרויקט מתקדם עם הפרדה מלאה:
 - **Controllers** - טיפול בבקשות/תגובות
@@ -30,20 +63,23 @@
 
 ---
 
-### [basic/](../basic/)
-**פרויקטים בסיסיים** (בהכנה)
-
-פרויקטים פשוטים למתחילים מוחלטים.
-
----
-
 ## מסלול למידה מומלץ
 
-1. **למד יסודות** → `guides/hebrew/beginners-guide.md`
-2. **הרץ דוגמאות** → `examples/hebrew/`
-3. **תרגל** → `exercises/hebrew/`
-4. **פרויקט ראשון** → `modular-crud/`
-5. **פרויקט מתקדם** → `modular-with-services/`
+```
+1️⃣ Simple CRUD (basic/simple-crud)
+   ↓ הבנת יסודות Express ו-CRUD
+   
+2️⃣ FS Promises CRUD (fs-promises-crud)
+   ↓ למד שמירת נתונים בקבצים
+   
+3️⃣ Modular CRUD (modular-crud)
+   ↓ למד ארגון קוד מקצועי
+   
+4️⃣ Modular with Services (modular-with-services)
+   ↓ ארכיטקטורה מתקדמת
+   
+🎓 אתה מוכן לבנות אפליקציות אמיתיות!
+```
 
 ---
 
