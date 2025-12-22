@@ -51,6 +51,28 @@
 
 ---
 
+### [middleware-exercises.md](middleware-exercises.md)
+10 תרגילים מעשיים על Middleware:
+1. **Logger בסיסי** - תיעוד בקשות
+2. **API Key Authentication** - אימות משתמשים
+3. **Request Timer** - מדידת זמני תגובה
+4. **Validation Middleware** - אימות נתונים
+5. **Rate Limiter** - הגבלת קצב בקשות
+6. **Role-Based Authorization** - הרשאות לפי תפקיד
+7. **Request Logger to File** - שמירת לוגים לקובץ
+8. **Error Handler** - טיפול בשגיאות
+9. **Body Size Limiter** - הגבלת גודל בקשות
+10. **Mini Project: Blog API** - פרויקט מלא עם כל ה-Middleware
+
+**כל תרגיל כולל:**
+- תיאור משימה ברור
+- רשימת דרישות
+- דוגמאות פלט
+- רמזים ב-collapsible sections
+- רעיונות לבונוס
+
+---
+
 ## איך לתרגל?
 
 1. **קרא את התרגיל** - הבן מה מבוקש

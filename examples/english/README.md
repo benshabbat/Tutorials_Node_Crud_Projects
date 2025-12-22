@@ -38,6 +38,41 @@ Complete CRUD with file storage:
 - Logging
 - Statistics
 
+---
+
+### [middleware-examples.js](middleware-examples.js)
+Comprehensive Middleware examples:
+- Logger - request logging
+- Request Timer - timing measurements
+- Authentication - API Key authentication
+- Role-based Authorization - permissions
+- Rate Limiter - rate limiting (20/minute)
+- Validation - data validation
+- File Logger - saving to file
+- Error Handler - error handling
+
+**How to run:**
+```bash
+node middleware-examples.js
+# Now open: http://localhost:3000
+```
+
+**Example API Keys:**
+```
+key-123 → User
+key-456 → Admin
+key-789 → Moderator
+```
+
+**Endpoints:**
+```
+GET    /              # API info
+GET    /profile       # Requires API Key
+POST   /users         # Requires API Key + Validation
+DELETE /users/:id     # Admin only
+GET    /stats         # Admin/Moderator
+```
+
 **How to run:**
 ```bash
 node params-examples.js

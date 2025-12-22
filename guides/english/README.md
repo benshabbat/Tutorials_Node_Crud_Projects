@@ -42,15 +42,29 @@ File System Promises guide:
 
 ---
 
+### [middleware-guide.md](middleware-guide.md)
+Comprehensive Middleware guide for Express:
+- What is middleware and how it works
+- Types of middleware (Application, Router, Built-in, Third-party, Error)
+- Practical examples (Logger, Authentication, Validation)
+- async/await with middleware
+- Common mistakes and Best Practices
+- Complete authentication system
+
+**Recommended for understanding how to build professional servers!**
+
+---
+
 ## Recommended Learning Path
 
 1. **Absolute Beginners** → `beginners-guide.md`
 2. **Quick Start** → `quick-start.md`
 3. **Parameters** → `params-guide.md`
-4. **File System** → `fs-promises-guide.md`
-5. **Practice** → Go to `exercises/english/`
-6. **Examples** → Go to `examples/english/`
-7. **Projects** → Go to `projects/`
+4. **Middleware** → `middleware-guide.md`
+5. **File System** → `fs-promises-guide.md`
+6. **Practice** → Go to `exercises/english/`
+7. **Examples** → Go to `examples/english/`
+8. **Projects** → Go to `projects/`
 
 ---
 

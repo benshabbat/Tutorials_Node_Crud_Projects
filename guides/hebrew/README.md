@@ -45,15 +45,29 @@
 
 ---
 
+### [middleware-guide.md](middleware-guide.md)
+מדריך מקיף על Middleware ב-Express:
+- מה זה middleware ואיך זה עובד
+- סוגי middleware (Application, Router, Built-in, Third-party, Error)
+- דוגמאות מעשיות (Logger, Authentication, Validation)
+- async/await עם middleware
+- שגיאות נפוצות ו-Best Practices
+- מערכת אימות מלאה
+
+**מומלץ למי שרוצה להבין איך לבנות שרת מקצועי!**
+
+---
+
 ## מסלול למידה מומלץ
 
 ### מתחילים
 1. **מתחילים** → `beginners-guide.md`
 2. **התעמקות** → `params-guide.md`
-3. **עבודה עם קבצים** → `fs-promises-guide.md`
-4. **תרגול** → עבור לתיקיית `exercises/hebrew/`
-5. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
-6. **פרויקטים** → עבור לתיקיית `projects/`
+3. **Middleware** → `middleware-guide.md`
+4. **עבודה עם קבצים** → `fs-promises-guide.md`
+5. **תרגול** → עבור לתיקיית `exercises/hebrew/`
+6. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
+7. **פרויקטים** → עבור לתיקיית `projects/`
 
 ### מסלול מהיר
 1. `quick-guide.md` → הקדמה מהירה

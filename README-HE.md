@@ -50,12 +50,17 @@ Tutorials_Node_Crud_Projects/
 - הרץ: [`examples/hebrew/params-examples.js`](examples/hebrew/params-examples.js)
 - תרגל: [`exercises/hebrew/params-exercises.md`](exercises/hebrew/params-exercises.md)
 
-### 3️⃣ למד על File System Promises
+### 3️⃣ למד על Middleware
+- קרא: [`guides/hebrew/middleware-guide.md`](guides/hebrew/middleware-guide.md)
+- הרץ: [`examples/hebrew/middleware-examples.js`](examples/hebrew/middleware-examples.js)
+- תרגל: [`exercises/hebrew/middleware-exercises.md`](exercises/hebrew/middleware-exercises.md)
+
+### 4️⃣ למד על File System Promises
 - קרא: [`guides/hebrew/fs-promises-guide.md`](guides/hebrew/fs-promises-guide.md)
 - הרץ: [`examples/hebrew/fs-promises-example.js`](examples/hebrew/fs-promises-example.js)
 - תרגל: [`exercises/hebrew/fs-promises-exercises.md`](exercises/hebrew/fs-promises-exercises.md)
 
-### 4️⃣ בנה פרויקטים
+### 5️⃣ בנה פרויקטים
 1. **למתחילים:** [`projects/basic/simple-crud/`](projects/basic/simple-crud/) - CRUD בסיסי עם Array
 2. **בינוני:** [`projects/fs-promises-crud/`](projects/fs-promises-crud/) - CRUD עם שמירה בקבצים
 3. **מתקדם:** [`projects/modular-crud/`](projects/modular-crud/) - מבנה מודולרי מלא
@@ -107,6 +112,9 @@ npm start
 ✅ **Express Framework** - ניתוב, middleware, טיפול בבקשות
 ✅ **פעולות CRUD** - יצירה, קריאה, עדכון, מחיקה
 ✅ **Parameters** - Route params, query strings, body, headers
+✅ **Middleware** - אימות, תיעוד, ולידציה, טיפול בשגיאות
+✅ **File System** - עבודה עם קבצים באמצעות fs/promises
+✅ **Async/Await** - JavaScript אסינכרוני מודרני
 ✅ **מבנה פרויקט** - ארגון קוד עם תבנית MVC
 ✅ **Best Practices** - טיפול בשגיאות, validation, קוד נקי
 

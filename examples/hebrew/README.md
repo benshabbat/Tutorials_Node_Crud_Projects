@@ -94,6 +94,41 @@ GET    /logs          # הצג logs
 
 ---
 
+### [middleware-examples.js](middleware-examples.js)
+דוגמאות מקיפות ל-Middleware:
+- Logger - תיעוד בקשות
+- Request Timer - מדידת זמנים
+- Authentication - אימות עם API Key
+- Role-based Authorization - הרשאות
+- Rate Limiter - הגבלת קצב (20/דקה)
+- Validation - אימות נתונים
+- File Logger - שמירה לקובץ
+- Error Handler - טיפול בשגיאות
+
+**איך להריץ:**
+```bash
+node middleware-examples.js
+# עכשיו פתח: http://localhost:3000
+```
+
+**API Keys לדוגמה:**
+```
+key-123 → User
+key-456 → Admin
+key-789 → Moderator
+```
+
+**Endpoints:**
+```
+GET    /              # מידע על ה-API
+GET    /profile       # דורש API Key
+POST   /users         # דורש API Key + Validation
+DELETE /users/:id     # רק Admin
+GET    /stats         # Admin/Moderator
+```
+
+---
+
 ## איך להתחיל?
 
 1. **התקן תלויות** (אם עדיין לא):

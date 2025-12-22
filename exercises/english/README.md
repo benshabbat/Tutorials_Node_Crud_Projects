@@ -35,6 +35,28 @@ General exercises for beginners:
 - Backup system
 - Multiple difficulty levels
 
+---
+
+### [middleware-exercises.md](middleware-exercises.md)
+10 practical exercises on Middleware:
+1. **Basic Logger** - request logging
+2. **API Key Authentication** - user authentication
+3. **Request Timer** - response time measurement
+4. **Validation Middleware** - data validation
+5. **Rate Limiter** - request rate limiting
+6. **Role-Based Authorization** - role-based permissions
+7. **Request Logger to File** - saving logs to file
+8. **Error Handler** - error handling
+9. **Body Size Limiter** - request size limiting
+10. **Mini Project: Blog API** - complete project with all Middleware
+
+**Each exercise includes:**
+- Clear task description
+- Requirements checklist
+- Example outputs
+- Hints in collapsible sections
+- Bonus ideas
+
 **Bonus:**
 - Rate Limiting
 - Advanced Pagination
