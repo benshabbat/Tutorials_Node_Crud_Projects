@@ -1,0 +1,17 @@
+{
+  "name": "simple-auth-solution",
+  "version": "1.0.0",
+  "description": "Simple authentication system with username and password - Modular architecture",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["express", "auth", "modular"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
