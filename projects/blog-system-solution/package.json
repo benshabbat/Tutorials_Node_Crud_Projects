@@ -1,0 +1,17 @@
+{
+  "name": "blog-system-solution",
+  "version": "1.0.0",
+  "description": "Full blog system with users, posts and comments - Modular architecture",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["express", "blog", "modular", "deploy"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
