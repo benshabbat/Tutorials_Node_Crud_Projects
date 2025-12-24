@@ -1,7 +1,5 @@
 # 🚀 Projects - פרויקטים
 
-# 🚀 Projects - פרויקטים
-
 ## 📊 רמות קושי
 
 | פרויקט | רמה | זמן למידה | מה לומדים |
@@ -10,6 +8,25 @@
 | [FS Promises CRUD](fs-promises-crud/) | ⭐⭐ בינוני | 1-2 שעות | File System, async/await |
 | [Modular CRUD](modular-crud/) | ⭐⭐⭐ מתקדם | 2-3 שעות | MVC, ארגון קוד |
 | [Modular with Services](modular-with-services/) | ⭐⭐⭐⭐ מומחה | 3-4 שעות | Services, ארכיטקטורה |
+
+---
+
+## 🎯 פתרונות מודולריים לתרגילים
+
+### [crud-json-solution](crud-json-solution/) - פתרון בסיסי
+פתרון מלא לתרגילי CRUD עם JSON (users + tasks)
+
+### [students-courses-solution](students-courses-solution/) - יחסים בין ישויות
+מערכת סטודנטים וקורסים עם קשרים רב-לרב
+
+### [blog-system-solution](blog-system-solution/) - מערכת מורכבת
+בלוג מלא עם users, posts, comments + deployment
+
+### [simple-auth-solution](simple-auth-solution/) - אימות בסיסי
+מערכת אימות עם username+password בכל בקשה
+
+### [auth-headers-solution](auth-headers-solution/) - אימות מתקדם
+מערכת אימות עם Bearer Tokens ב-Headers
 
 ## Available Projects
 
