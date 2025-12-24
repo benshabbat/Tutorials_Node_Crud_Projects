@@ -1,0 +1,17 @@
+{
+  "name": "crud-json-solution",
+  "version": "1.0.0",
+  "description": "Modular solution for CRUD with JSON files exercises",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["express", "crud", "json", "modular"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

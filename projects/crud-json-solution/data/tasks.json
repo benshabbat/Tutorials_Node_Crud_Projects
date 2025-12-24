@@ -1,0 +1,4 @@
+[
+  { "id": 1, "title": "לקנות חלב", "completed": false, "priority": "high" },
+  { "id": 2, "title": "לסיים תרגיל", "completed": false, "priority": "medium" }
+]
