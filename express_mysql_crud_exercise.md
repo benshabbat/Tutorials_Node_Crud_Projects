@@ -123,12 +123,35 @@ app.listen(PORT, () => {
 // Database Connection
 // ===================================
 
-// TODO: Create connection with mysql.createConnection
-// TODO: Print success message
-// TODO: Add connection cleanup handler (process.on('SIGINT'))
+// TODO: 1. צרו חיבור ראשוני ללא database כדי ליצור אותו
+// TODO: 2. צרו את ה-database אם הוא לא קיים
+// TODO: 3. התחברו שוב עם ה-database הספציפי
+// TODO: 4. הוסיפו טיפול בסגירת החיבור (process.on('SIGINT'))
 ```
 
-**רמז:** השתמשו ב-`await mysql.createConnection({...})`
+**רמזים:**
+```javascript
+// First connection without database
+const tempConnection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 3306
+});
+
+// Create database if not exists
+await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
+await tempConnection.end();
+
+// Now connect with the specific database
+const connection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306
+});
+```
 ```
 
 ### שלב 3: בדיקה ראשונה
@@ -141,36 +164,20 @@ npm run dev
 **אם הכל תקין תראו:**
 ```
 🚀 Server is running on http://localhost:3000
-✅ מחובר למסד הנתונים בהצלחה!
+✅ Connected to database successfully!
 ```
 
 **⚠️ אם יש שגיאה:**
 - `Access denied` - סיסמה לא נכונה ב-.env
-- `Unknown database` - המסד לא קיים (ניצור אותו בשלב הבא)
 - `ECONNREFUSED` - MySQL לא פועל
+
+**🎉 מעולה! ה-database נוצר אוטומטית אם הוא לא קיים!**
 
 ---
 
-## חלק ב': יצירת מסד הנתונים והטבלה
+## חלק ב': יצירת הטבלה
 
-### שלב 1: יצירת Database
-
-**פתחו terminal נוסף והריצו:**
-
-```bash
-mysql -u root -p
-```
-
-**ב-MySQL shell הקלידו:**
-
-```sql
-CREATE DATABASE IF NOT EXISTS tasks_db;
-USE tasks_db;
-SHOW DATABASES;
-EXIT;
-```
-
-### שלב 2: פונקציה ליצירת טבלה אוטומטית
+### שלב 1: פונקציה ליצירת טבלה אוטומטית
 
 **הוסיפו לפני app.listen():**
 
@@ -201,17 +208,17 @@ async function setupDatabase() {
 setupDatabase();
 ```
 
-### שלב 3: בדיקה שהטבלה נוצרה
+### שלב 2: בדיקה שהטבלה נוצרה
 
 **הריצו מחדש את השרת (Ctrl+C ואז npm run dev)**
 
 אמורים לראות:
 ```
-✅ מחובר למסד הנתונים בהצלחה!
-✅ טבלת tasks מוכנה לשימוש
+✅ Connected to database successfully!
+✅ Tasks table is ready
 ```
 
-**אפשר גם לבדוק ישירות ב-MySQL:**
+**אפשר גם לבדוק ישירות ב-MySQL (אופציונלי):**
 
 ```bash
 mysql -u root -p tasks_db
@@ -1172,9 +1179,21 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // ===================================
-// יצירת חיבור למסד הנתונים
+// Database Connection
 // ===================================
 
+// Create database if not exists
+const tempConnection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 3306
+});
+
+await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
+await tempConnection.end();
+
+// Connect to the specific database
 const connection = await mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -1418,6 +1437,18 @@ app.listen(PORT, () => {
 import mysql from 'mysql2/promise';
 import 'dotenv/config';
 
+// Create database if not exists
+const tempConnection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 3306
+});
+
+await tempConnection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
+await tempConnection.end();
+
+// Connect to the specific database
 const connection = await mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
