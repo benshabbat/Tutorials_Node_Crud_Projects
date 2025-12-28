@@ -1,0 +1,25 @@
+{
+  "name": "modular-mysql-crud",
+  "version": "1.0.0",
+  "description": "Modular CRUD API with MySQL - Professional structure",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mysql",
+    "crud",
+    "express",
+    "modular",
+    "mvc"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0",
+    "dotenv": "^16.3.1"
+  }
+}

@@ -6,7 +6,9 @@
 |--------|-----|-----------|-----------|
 | [Simple CRUD](basic/simple-crud/) | ⭐ בסיסי | 30 דקות | Express, CRUD בסיסי |
 | [FS Promises CRUD](fs-promises-crud/) | ⭐⭐ בינוני | 1-2 שעות | File System, async/await |
+| [Simple MySQL CRUD](simple-mysql-crud/) | ⭐⭐ בינוני | 1-2 שעות | MySQL בסיסי, Connection Pool |
 | [Modular CRUD](modular-crud/) | ⭐⭐⭐ מתקדם | 2-3 שעות | MVC, ארגון קוד |
+| [Modular MySQL CRUD](modular-mysql-crud/) | ⭐⭐⭐ מתקדם | 2-3 שעות | MySQL מודולרי, MVC |
 | [Modular with Services](modular-with-services/) | ⭐⭐⭐⭐ מומחה | 3-4 שעות | Services, ארכיטקטורה |
 
 ---
@@ -52,7 +54,21 @@
 
 ---
 
-### 3. [modular-crud/](modular-crud/)
+### 3. [simple-mysql-crud/](simple-mysql-crud/)
+**⭐⭐ CRUD עם MySQL - כל הקוד בקובץ אחד**
+
+למד עבודה עם מסד נתונים אמיתי:
+- ✅ חיבור ל-MySQL
+- ✅ Connection Pool
+- ✅ Prepared Statements
+- ✅ כל הקוד בקובץ אחד - קל להבין
+- ✅ מושלם למעבר מ-File System ל-Database
+
+**מומלץ אחרי fs-promises-crud!**
+
+---
+
+### 4. [modular-crud/](modular-crud/)
 **⭐⭐⭐ CRUD מודולרי מובנה**
 
 פרויקט CRUD מאורגן עם מבנה נכון:
@@ -66,7 +82,22 @@
 
 ---
 
-### 4. [modular-with-services/](modular-with-services/)
+### 5. [modular-mysql-crud/](modular-mysql-crud/)
+**⭐⭐⭐ MySQL מודולרי עם ארכיטקטורת MVC**
+
+פרויקט MySQL מאורגן בצורה מקצועית:
+- ✅ **ארכיטקטורת MVC מלאה**
+- ✅ **Models** - שאילתות למסד נתונים
+- ✅ **Controllers** - לוגיקה עסקית
+- ✅ **Routes** - ניתוב
+- ✅ **Middleware** - וולידציה וטיפול בשגיאות
+- ✅ **מבנה מקצועי** - מוכן לפרויקט אמיתי
+
+**מומלץ למי שמבין MySQL ורוצה מבנה מקצועי!**
+
+---
+
+### 6. [modular-with-services/](modular-with-services/)
 **⭐⭐⭐⭐ CRUD עם Services Layer**
 
 פרויקט מתקדם עם הפרדה מלאה:
@@ -74,10 +105,16 @@
 - **Services** - לוגיקה עסקית
 - **Models** - מבנה נתונים
 - **Routes** - ניתוב
-- **Middleware** - שכבות ביניים
-
-**מומלץ למי שמבין מבנה מודולרי!**
-
+- **Simple MySQL CRUD (simple-mysql-crud)
+   ↓ מעבר למסד נתונים אמיתי
+   
+4️⃣ Modular CRUD (modular-crud)
+   ↓ למד ארגון קוד מקצועי
+   
+5️⃣ Modular MySQL CRUD (modular-mysql-crud)
+   ↓ MySQL עם מבנה מקצועי
+   
+6
 ---
 
 ## מסלול למידה מומלץ
