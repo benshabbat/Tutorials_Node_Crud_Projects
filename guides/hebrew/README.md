@@ -74,6 +74,23 @@
 
 ---
 
+### [mysql-docker-guide.md](mysql-docker-guide.md)
+מדריך מקיף על עבודה עם MySQL, phpMyAdmin ו-Docker:
+- מה זה Docker ולמה להשתמש בו
+- התקנת Docker (Windows, macOS, Linux)
+- הרצת MySQL ב-container
+- הוספת phpMyAdmin לניהול ויזואלי
+- Docker Compose - ניהול מספר containers
+- חיבור מ-Node.js למסד נתונים ב-Docker
+- ניהול containers, images ו-volumes
+- דוגמאות מעשיות ופרויקט מלא
+- Best Practices ופתרון בעיות
+- Backup & Restore
+
+**מומלץ למי שרוצה סביבת פיתוח מקצועית ונקייה!**
+
+---
+
 ## מסלול למידה מומלץ
 
 ### מתחילים
@@ -82,16 +99,18 @@
 3. **Middleware** → `middleware-guide.md`
 4. **עבודה עם קבצים** → `fs-promises-guide.md`
 5. **מעבר למסד נתונים** → `mysql-guide.md`
-6. **תרגול** → עבור לתיקיית `exercises/hebrew/`
-7. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
-8. **פרויקטים** → עבור לתיקיית `projects/`
+6. **סביבת פיתוח מקצועית** → `mysql-docker-guide.md`
+7. **תרגול** → עבור לתיקיית `exercises/hebrew/`
+8. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
+9. **פרויקטים** → עבור לתיקיית `projects/`
 
 ### מסלול מהיר
 1. `quick-guide.md` → הקדמה מהירה
 2. `params-guide.md` → למד parameters
 3. `fs-promises-guide.md` → עבוד עם קבצים
 4. `mysql-guide.md` → התחבר למסד נתונים
-5. `exercises/hebrew/` → תרגל!
+5. `mysql-docker-guide.md` → הקם סביבה עם Docker
+6. `exercises/hebrew/` → תרגל!
 
 ---
 
