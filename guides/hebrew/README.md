@@ -58,6 +58,22 @@
 
 ---
 
+### [mysql-guide.md](mysql-guide.md)
+מדריך מקיף על עבודה עם MySQL ב-Node.js:
+- התקנה והגדרה של MySQL
+- חיבור למסד נתונים עם mysql2
+- יצירת טבלאות ויחסים
+- פעולות CRUD מלאות
+- Connection Pool לביצועים מיטביים
+- Prepared Statements להגנה מפני SQL Injection
+- טיפול בשגיאות ו-Transactions
+- דוגמאות מעשיות עם Express
+- Best Practices
+
+**מומלץ למי שרוצה לעבוד עם מסד נתונים אמיתי!**
+
+---
+
 ## מסלול למידה מומלץ
 
 ### מתחילים
@@ -65,15 +81,17 @@
 2. **התעמקות** → `params-guide.md`
 3. **Middleware** → `middleware-guide.md`
 4. **עבודה עם קבצים** → `fs-promises-guide.md`
-5. **תרגול** → עבור לתיקיית `exercises/hebrew/`
-6. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
-7. **פרויקטים** → עבור לתיקיית `projects/`
+5. **מעבר למסד נתונים** → `mysql-guide.md`
+6. **תרגול** → עבור לתיקיית `exercises/hebrew/`
+7. **דוגמאות** → עבור לתיקיית `examples/hebrew/`
+8. **פרויקטים** → עבור לתיקיית `projects/`
 
 ### מסלול מהיר
 1. `quick-guide.md` → הקדמה מהירה
 2. `params-guide.md` → למד parameters
 3. `fs-promises-guide.md` → עבוד עם קבצים
-4. `exercises/hebrew/` → תרגל!
+4. `mysql-guide.md` → התחבר למסד נתונים
+5. `exercises/hebrew/` → תרגל!
 
 ---
 
