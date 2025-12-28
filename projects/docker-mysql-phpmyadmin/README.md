@@ -1,208 +1,215 @@
-# פרויקט Node.js + Docker + MySQL + phpMyAdmin
+# Node.js + Docker + JSON Data Store + MySQL + phpMyAdmin
 
-פרויקט מלא עם Express.js, MySQL ו-phpMyAdmin הרצים על Docker.
+Full project with Express.js, JSON data storage, MySQL and phpMyAdmin running on Docker.
 
-## 📋 תוכן עניינים
+## 📋 Table of Contents
 
-- [דרישות מקדימות](#דרישות-מקדימות)
-- [התקנה](#התקנה)
-- [הרצה](#הרצה)
-- [שימוש](#שימוש)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running](#running)
+- [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [פתרון בעיות](#פתרון-בעיות)
+- [Troubleshooting](#troubleshooting)
 
-## 🔧 דרישות מקדימות
+## 🔧 Prerequisites
 
-לפני שמתחילים, יש לוודא שמותקנים:
+Before starting, ensure you have installed:
 
-- [Node.js](https://nodejs.org/) (גרסה 14 ומעלה)
+- [Node.js](https://nodejs.org/) (version 14+)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-## 📦 התקנה
+## 📦 Installation
 
-1. **התקנת תלויות Node.js:**
+1. **Install Node.js dependencies:**
 ```bash
 npm install
 ```
 
-2. **הגדרת משתני סביבה:**
-   - הקובץ `.env` כבר קיים עם הגדרות ברירת מחדל
-   - ניתן לערוך את הקובץ בהתאם לצרכים
+2. **Environment variables:**
+   - The `.env` file already exists with default settings
+   - You can edit it according to your needs
 
-## 🚀 הרצה
+## 🚀 Running
 
-### הפעלת Docker Containers
+### Start Docker Containers (Optional)
 
 ```bash
-# הפעלת MySQL ו-phpMyAdmin
+# Start MySQL and phpMyAdmin
 npm run docker:up
 
-# או ישירות עם docker-compose
+# Or directly with docker-compose
 docker-compose up -d
 ```
 
-המערכת תקים:
-- **MySQL Server** על פורט `3306`
-- **phpMyAdmin** על `http://localhost:8080`
+This will start:
+- **MySQL Server** on port `3306`
+- **phpMyAdmin** on `http://localhost:8080`
 
-### הפעלת שרת Node.js
+> **Note:** Docker/MySQL is optional. The project uses JSON files for data storage by default.
+
+### Start Node.js Server
 
 ```bash
-# הרצה רגילה
+# Normal run
 npm start
 
-# או במצב פיתוח (עם nodemon)
+# Or in development mode (with nodemon)
 npm run dev
 ```
 
-השרת יעלה על `http://localhost:3000`
+Server will start on `http://localhost:3000`
 
-## 🎯 שימוש
+## 🎯 Usage
 
-### גישה ל-phpMyAdmin
+### Access phpMyAdmin (if using MySQL)
 
-1. פתח דפדפן והיכנס ל: `http://localhost:8080`
-2. התחבר עם הפרטים:
+1. Open browser and go to: `http://localhost:8080`
+2. Login with:
    - **Server:** `mysql`
    - **Username:** `root`
-   - **Password:** `root123` (או כפי שהוגדר ב-.env)
+   - **Password:** `root123` (or as defined in .env)
 
-### גישה ל-API
+### Access API
 
-השרת מספק API מלא עבור שתי טבלאות:
+The server provides a complete API for two resources:
 
-#### דף בית
+#### Home Page
 ```
 GET http://localhost:3000/
 ```
 
 ## 📚 API Endpoints
 
-### משתמשים (Users)
+### Users
 
-| Method | Endpoint | תיאור |
-|--------|----------|-------|
-| GET | `/api/users` | קבלת כל המשתמשים |
-| GET | `/api/users/:id` | קבלת משתמש לפי ID |
-| POST | `/api/users` | יצירת משתמש חדש |
-| PUT | `/api/users/:id` | עדכון משתמש |
-| DELETE | `/api/users/:id` | מחיקת משתמש |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/users` | Get all users |
+| GET | `/api/users/:id` | Get user by ID |
+| POST | `/api/users` | Create new user |
+| PUT | `/api/users/:id` | Update user |
+| DELETE | `/api/users/:id` | Delete user |
 
-**דוגמה ליצירת משתמש:**
+**Example - Create user:**
 ```bash
 curl -X POST http://localhost:3000/api/users \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "דני שמש",
+    "name": "Danny Shemesh",
     "email": "danny@example.com",
     "age": 30
   }'
 ```
 
-### מוצרים (Products)
+### Products
 
-| Method | Endpoint | תיאור |
-|--------|----------|-------|
-| GET | `/api/products` | קבלת כל המוצרים |
-| GET | `/api/products/:id` | קבלת מוצר לפי ID |
-| POST | `/api/products` | יצירת מוצר חדש |
-| PUT | `/api/products/:id` | עדכון מוצר |
-| DELETE | `/api/products/:id` | מחיקת מוצר |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/products` | Get all products |
+| GET | `/api/products/:id` | Get product by ID |
+| POST | `/api/products` | Create new product |
+| PUT | `/api/products/:id` | Update product |
+| DELETE | `/api/products/:id` | Delete product |
 
-**דוגמה ליצירת מוצר:**
+**Example - Create product:**
 ```bash
 curl -X POST http://localhost:3000/api/products \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "טלפון סלולרי",
-    "description": "סמארטפון עם מסך AMOLED",
+    "name": "Smartphone",
+    "description": "Smartphone with AMOLED screen",
     "price": 2500.00,
     "stock": 15
   }'
 ```
 
-## 🐳 פקודות Docker שימושיות
+## 🐳 Useful Docker Commands
 
 ```bash
-# עצירת הקונטיינרים
+# Stop containers
 npm run docker:down
 
-# צפייה בלוגים
+# View logs
 npm run docker:logs
 
-# הפעלה מחדש של הקונטיינרים
+# Restart containers
 npm run docker:restart
 
-# מחיקת הכל כולל volumes (נתונים)
+# Remove everything including volumes (data)
 docker-compose down -v
 ```
 
-## 🗃️ מבנה בסיס הנתונים
+## 🗃️ Data Structure
 
-הפרויקט יוצר אוטומטית שתי טבלאות עם נתוני דוגמה:
+The project uses JSON files for data storage with sample data:
 
-### טבלת Users
-```sql
-- id (INT, PRIMARY KEY, AUTO_INCREMENT)
-- name (VARCHAR)
-- email (VARCHAR, UNIQUE)
-- age (INT)
-- created_at (TIMESTAMP)
-- updated_at (TIMESTAMP)
+### Users JSON Structure
+```json
+{
+  "id": 1,
+  "name": "Alice Cohen",
+  "email": "alice@example.com",
+  "age": 28,
+  "createdAt": "2024-01-15T10:30:00Z",
+  "updatedAt": "2024-01-15T10:30:00Z"
+}
 ```
 
-### טבלת Products
-```sql
-- id (INT, PRIMARY KEY, AUTO_INCREMENT)
-- name (VARCHAR)
-- description (TEXT)
-- price (DECIMAL)
-- stock (INT)
-- created_at (TIMESTAMP)
+### Products JSON Structure
+```json
+{
+  "id": 1,
+  "name": "Laptop",
+  "description": "15 inch laptop with SSD",
+  "price": 3500.00,
+  "stock": 10,
+  "createdAt": "2024-01-15T08:00:00Z"
+}
 ```
 
-## 🔍 פתרון בעיות
+## 🔍 Troubleshooting
 
-### בעיה: MySQL לא עולה
+### Issue: MySQL not starting
 ```bash
-# בדיקת סטטוס הקונטיינרים
+# Check container status
 docker ps -a
 
-# צפייה בלוגים של MySQL
+# View MySQL logs
 docker logs mysql_db
 ```
 
-### בעיה: הפורטים תפוסים
-שנה את הפורטים בקובץ `docker-compose.yml`:
+### Issue: Ports already in use
+Change ports in `docker-compose.yml`:
 ```yaml
 ports:
-  - "3307:3306"  # במקום 3306
+  - "3307:3306"  # Instead of 3306
 ```
 
-### בעיה: שגיאת חיבור מ-Node.js
-ודא ש:
-1. הקונטיינרים של Docker רצים
-2. משתני הסביבה ב-`.env` תואמים ל-`docker-compose.yml`
-3. המתן מספר שניות לאחר הפעלת Docker עד שה-MySQL מוכן
+### Issue: Connection error from Node.js
+Make sure:
+1. Docker containers are running (if using MySQL)
+2. Environment variables in `.env` match `docker-compose.yml`
+3. Wait a few seconds after Docker startup for MySQL to be ready
 
-## 📝 הערות חשובות
+## 📝 Important Notes
 
-- **נתוני הדוגמה** נטענים אוטומטית מהקובץ `init.sql` בפעם הראשונה בלבד
-- **הנתונים נשמרים** ב-Docker Volume גם לאחר עצירת הקונטיינרים
-- **למחיקת נתונים** יש להשתמש ב-`docker-compose down -v`
+- **Data is stored** in JSON files in the `data/` directory
+- **Sample data** is included in `users.json` and `products.json`
+- **MySQL is optional** - the project works with JSON files by default
+- **Data persists** between server restarts
 
-## 🌟 תכונות
+## 🌟 Features
 
-✅ Docker Compose מוכן לשימוש  
-✅ MySQL 8.0 עם הגדרות מיטביות  
-✅ phpMyAdmin לניהול ויזואלי  
-✅ REST API מלא עם CRUD  
-✅ Connection Pooling  
-✅ נתוני דוגמה בעברית  
-✅ Healthcheck ל-MySQL  
-✅ מבנה קוד מסודר  
+✅ Docker Compose ready to use  
+✅ MySQL 8.0 with optimal settings  
+✅ phpMyAdmin for visual management  
+✅ Full REST API with CRUD  
+✅ JSON file-based data storage  
+✅ ES6 Modules  
+✅ Modular code structure  
+✅ Sample data included  
 
-## 📄 רישיון
+## 📄 License
 
 ISC

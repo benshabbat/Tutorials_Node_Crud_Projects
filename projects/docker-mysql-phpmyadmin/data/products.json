@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "description": "15 inch laptop with SSD",
+    "price": 3500.00,
+    "stock": 10,
+    "createdAt": "2024-01-15T08:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse",
+    "price": 89.90,
+    "stock": 50,
+    "createdAt": "2024-01-15T08:05:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Mechanical Keyboard",
+    "description": "RGB mechanical keyboard",
+    "price": 299.00,
+    "stock": 25,
+    "createdAt": "2024-01-15T08:10:00Z"
+  }
+]

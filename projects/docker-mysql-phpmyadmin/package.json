@@ -1,7 +1,7 @@
 {
   "name": "docker-mysql-phpmyadmin",
   "version": "1.0.0",
-  "description": "פרויקט Node.js עם Docker, MySQL ו-phpMyAdmin",
+  "description": "Node.js project with Docker, JSON data storage, MySQL and phpMyAdmin",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -14,6 +14,7 @@
   },
   "keywords": [
     "express",
+    "json",
     "mysql",
     "docker",
     "phpmyadmin",

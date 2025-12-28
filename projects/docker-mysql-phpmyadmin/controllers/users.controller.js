@@ -1,49 +1,52 @@
-import { pool } from '../models/db.js';
+import { readJSONFile, writeJSONFile, getNextId } from '../models/jsonDb.js';
 
-// קבלת כל המשתמשים
+const USERS_FILE = 'users.json';
+
+// Get all users
 export const getAllUsers = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM users');
+        const users = await readJSONFile(USERS_FILE);
         res.json({
             success: true,
-            data: rows,
-            count: rows.length
+            data: users,
+            count: users.length
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בקבלת משתמשים',
+            message: 'Error fetching users',
             error: error.message
         });
     }
 };
 
-// קבלת משתמש לפי ID
+// Get user by ID
 export const getUserById = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [req.params.id]);
+        const users = await readJSONFile(USERS_FILE);
+        const user = users.find(u => u.id === parseInt(req.params.id));
         
-        if (rows.length === 0) {
+        if (!user) {
             return res.status(404).json({
                 success: false,
-                message: 'משתמש לא נמצא'
+                message: 'User not found'
             });
         }
         
         res.json({
             success: true,
-            data: rows[0]
+            data: user
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בקבלת משתמש',
+            message: 'Error fetching user',
             error: error.message
         });
     }
 };
 
-// יצירת משתמש חדש
+// Create new user
 export const createUser = async (req, res) => {
     try {
         const { name, email, age } = req.body;
@@ -51,92 +54,123 @@ export const createUser = async (req, res) => {
         if (!name || !email) {
             return res.status(400).json({
                 success: false,
-                message: 'שם ואימייל הם שדות חובה'
+                message: 'Name and email are required fields'
             });
         }
         
-        const [result] = await pool.query(
-            'INSERT INTO users (name, email, age) VALUES (?, ?, ?)',
-            [name, email, age || null]
-        );
+        const users = await readJSONFile(USERS_FILE);
+        
+        // Check if email already exists
+        const emailExists = users.some(u => u.email === email);
+        if (emailExists) {
+            return res.status(400).json({
+                success: false,
+                message: 'Email already exists in the system'
+            });
+        }
+        
+        const newUser = {
+            id: getNextId(users),
+            name,
+            email,
+            age: age || null,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        
+        users.push(newUser);
+        await writeJSONFile(USERS_FILE, users);
         
         res.status(201).json({
             success: true,
-            message: 'משתמש נוצר בהצלחה',
-            data: {
-                id: result.insertId,
-                name,
-                email,
-                age
-            }
+            message: 'User created successfully',
+            data: newUser
         });
     } catch (error) {
-        if (error.code === 'ER_DUP_ENTRY') {
-            return res.status(400).json({
-                success: false,
-                message: 'האימייל כבר קיים במערכת'
-            });
-        }
-        
         res.status(500).json({
             success: false,
-            message: 'שגיאה ביצירת משתמש',
+            message: 'Error creating user',
             error: error.message
         });
     }
 };
 
-// עדכון משתמש
+// Update user
 export const updateUser = async (req, res) => {
     try {
         const { name, email, age } = req.body;
-        const { id } = req.params;
+        const userId = parseInt(req.params.id);
         
-        const [result] = await pool.query(
-            'UPDATE users SET name = COALESCE(?, name), email = COALESCE(?, email), age = COALESCE(?, age) WHERE id = ?',
-            [name, email, age, id]
-        );
+        const users = await readJSONFile(USERS_FILE);
+        const userIndex = users.findIndex(u => u.id === userId);
         
-        if (result.affectedRows === 0) {
+        if (userIndex === -1) {
             return res.status(404).json({
                 success: false,
-                message: 'משתמש לא נמצא'
+                message: 'User not found'
             });
         }
         
+        // Check if email is being changed and if it already exists
+        if (email && email !== users[userIndex].email) {
+            const emailExists = users.some(u => u.email === email && u.id !== userId);
+            if (emailExists) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Email already exists in the system'
+                });
+            }
+        }
+        
+        users[userIndex] = {
+            ...users[userIndex],
+            name: name || users[userIndex].name,
+            email: email || users[userIndex].email,
+            age: age !== undefined ? age : users[userIndex].age,
+            updatedAt: new Date().toISOString()
+        };
+        
+        await writeJSONFile(USERS_FILE, users);
+        
         res.json({
             success: true,
-            message: 'משתמש עודכן בהצלחה'
+            message: 'User updated successfully',
+            data: users[userIndex]
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בעדכון משתמש',
+            message: 'Error updating user',
             error: error.message
         });
     }
 };
 
-// מחיקת משתמש
+// Delete user
 export const deleteUser = async (req, res) => {
     try {
-        const [result] = await pool.query('DELETE FROM users WHERE id = ?', [req.params.id]);
+        const userId = parseInt(req.params.id);
+        const users = await readJSONFile(USERS_FILE);
+        const userIndex = users.findIndex(u => u.id === userId);
         
-        if (result.affectedRows === 0) {
+        if (userIndex === -1) {
             return res.status(404).json({
                 success: false,
-                message: 'משתמש לא נמצא'
+                message: 'User not found'
             });
         }
         
+        users.splice(userIndex, 1);
+        await writeJSONFile(USERS_FILE, users);
+        
         res.json({
             success: true,
-            message: 'משתמש נמחק בהצלחה'
+            message: 'User deleted successfully'
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה במחיקת משתמש',
+            message: 'Error deleting user',
             error: error.message
         });
     }

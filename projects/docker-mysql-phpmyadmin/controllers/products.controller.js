@@ -1,136 +1,156 @@
-import { pool } from '../models/db.js';
+import { readJSONFile, writeJSONFile, getNextId } from '../models/jsonDb.js';
 
-// קבלת כל המוצרים
+const PRODUCTS_FILE = 'products.json';
+
+// Get all products
 export const getAllProducts = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM products');
+        const products = await readJSONFile(PRODUCTS_FILE);
         res.json({
             success: true,
-            data: rows,
-            count: rows.length
+            data: products,
+            count: products.length
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בקבלת מוצרים',
+            message: 'Error fetching products',
             error: error.message
         });
     }
 };
 
-// קבלת מוצר לפי ID
+// Get product by ID
 export const getProductById = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM products WHERE id = ?', [req.params.id]);
+        const products = await readJSONFile(PRODUCTS_FILE);
+        const product = products.find(p => p.id === parseInt(req.params.id));
         
-        if (rows.length === 0) {
+        if (!product) {
             return res.status(404).json({
                 success: false,
-                message: 'מוצר לא נמצא'
+                message: 'Product not found'
             });
         }
         
         res.json({
             success: true,
-            data: rows[0]
+            data: product
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בקבלת מוצר',
+            message: 'Error fetching product',
             error: error.message
         });
     }
 };
 
-// יצירת מוצר חדש
+// Create new product
 export const createProduct = async (req, res) => {
     try {
         const { name, description, price, stock } = req.body;
         
-        if (!name || !price) {
+        if (!name || price === undefined) {
             return res.status(400).json({
                 success: false,
-                message: 'שם ומחיר הם שדות חובה'
+                message: 'Name and price are required fields'
             });
         }
         
-        const [result] = await pool.query(
-            'INSERT INTO products (name, description, price, stock) VALUES (?, ?, ?, ?)',
-            [name, description || null, price, stock || 0]
-        );
+        const products = await readJSONFile(PRODUCTS_FILE);
+        
+        const newProduct = {
+            id: getNextId(products),
+            name,
+            description: description || null,
+            price: parseFloat(price),
+            stock: stock !== undefined ? parseInt(stock) : 0,
+            createdAt: new Date().toISOString()
+        };
+        
+        products.push(newProduct);
+        await writeJSONFile(PRODUCTS_FILE, products);
         
         res.status(201).json({
             success: true,
-            message: 'מוצר נוצר בהצלחה',
-            data: {
-                id: result.insertId,
-                name,
-                description,
-                price,
-                stock
-            }
+            message: 'Product created successfully',
+            data: newProduct
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה ביצירת מוצר',
+            message: 'Error creating product',
             error: error.message
         });
     }
 };
 
-// עדכון מוצר
+// Update product
 export const updateProduct = async (req, res) => {
     try {
         const { name, description, price, stock } = req.body;
-        const { id } = req.params;
+        const productId = parseInt(req.params.id);
         
-        const [result] = await pool.query(
-            'UPDATE products SET name = COALESCE(?, name), description = COALESCE(?, description), price = COALESCE(?, price), stock = COALESCE(?, stock) WHERE id = ?',
-            [name, description, price, stock, id]
-        );
+        const products = await readJSONFile(PRODUCTS_FILE);
+        const productIndex = products.findIndex(p => p.id === productId);
         
-        if (result.affectedRows === 0) {
+        if (productIndex === -1) {
             return res.status(404).json({
                 success: false,
-                message: 'מוצר לא נמצא'
+                message: 'Product not found'
             });
         }
         
+        products[productIndex] = {
+            ...products[productIndex],
+            name: name || products[productIndex].name,
+            description: description !== undefined ? description : products[productIndex].description,
+            price: price !== undefined ? parseFloat(price) : products[productIndex].price,
+            stock: stock !== undefined ? parseInt(stock) : products[productIndex].stock
+        };
+        
+        await writeJSONFile(PRODUCTS_FILE, products);
+        
         res.json({
             success: true,
-            message: 'מוצר עודכן בהצלחה'
+            message: 'Product updated successfully',
+            data: products[productIndex]
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה בעדכון מוצר',
+            message: 'Error updating product',
             error: error.message
         });
     }
 };
 
-// מחיקת מוצר
+// Delete product
 export const deleteProduct = async (req, res) => {
     try {
-        const [result] = await pool.query('DELETE FROM products WHERE id = ?', [req.params.id]);
+        const productId = parseInt(req.params.id);
+        const products = await readJSONFile(PRODUCTS_FILE);
+        const productIndex = products.findIndex(p => p.id === productId);
         
-        if (result.affectedRows === 0) {
+        if (productIndex === -1) {
             return res.status(404).json({
                 success: false,
-                message: 'מוצר לא נמצא'
+                message: 'Product not found'
             });
         }
         
+        products.splice(productIndex, 1);
+        await writeJSONFile(PRODUCTS_FILE, products);
+        
         res.json({
             success: true,
-            message: 'מוצר נמחק בהצלחה'
+            message: 'Product deleted successfully'
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: 'שגיאה במחיקת מוצר',
+            message: 'Error deleting product',
             error: error.message
         });
     }
