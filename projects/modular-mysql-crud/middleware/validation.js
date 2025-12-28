@@ -1,34 +1,34 @@
 // Validation Middleware
-// Middleware לוולידציה
+// Validation middleware
 
-// וולידציה ליצירה/עדכון משתמש
+// Validation for create/update user
 export const validateUser = (req, res, next) => {
   const { name, email, age } = req.body;
 
-  // בדיקת שדות חובה
+  // Check required fields
   if (!name || !email) {
     return res.status(400).json({ 
       success: false,
-      error: 'שם ואימייל הם שדות חובה' 
+      error: 'Name and email are required' 
     });
   }
 
-  // בדיקת אימייל תקין
+  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ 
       success: false,
-      error: 'אימייל לא תקין' 
+      error: 'Invalid email format' 
     });
   }
 
-  // בדיקת גיל תקין
+  // Validate age
   if (age !== undefined && age !== null && age !== '') {
     const ageNum = parseInt(age);
     if (isNaN(ageNum) || ageNum < 0 || ageNum > 150) {
       return res.status(400).json({ 
         success: false,
-        error: 'גיל לא תקין (0-150)' 
+        error: 'Invalid age (0-150)' 
       });
     }
   }
@@ -36,14 +36,14 @@ export const validateUser = (req, res, next) => {
   next();
 };
 
-// וולידציה ל-ID
+// Validation for ID
 export const validateId = (req, res, next) => {
   const { id } = req.params;
   
   if (!id || isNaN(id) || parseInt(id) <= 0) {
     return res.status(400).json({ 
       success: false,
-      error: 'ID לא תקין' 
+      error: 'Invalid ID' 
     });
   }
 

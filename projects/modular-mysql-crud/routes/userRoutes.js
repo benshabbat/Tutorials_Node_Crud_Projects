@@ -1,5 +1,5 @@
 // User Routes
-// ניתוב משתמשים
+// User routing
 
 import express from 'express';
 import {
@@ -14,22 +14,22 @@ import { validateUser, validateId } from '../middleware/validation.js';
 
 const router = express.Router();
 
-// GET /api/users/stats - סטטיסטיקות (לפני /:id!)
+// GET /api/users/stats - Statistics (before /:id!)
 router.get('/stats', getUserStats);
 
-// GET /api/users - קבלת כל המשתמשים
+// GET /api/users - Get all users
 router.get('/', getAllUsers);
 
-// GET /api/users/:id - קבלת משתמש לפי ID
+// GET /api/users/:id - Get user by ID
 router.get('/:id', validateId, getUserById);
 
-// POST /api/users - יצירת משתמש חדש
+// POST /api/users - Create new user
 router.post('/', validateUser, createUser);
 
-// PUT /api/users/:id - עדכון משתמש
+// PUT /api/users/:id - Update user
 router.put('/:id', validateId, validateUser, updateUser);
 
-// DELETE /api/users/:id - מחיקת משתמש
+// DELETE /api/users/:id - Delete user
 router.delete('/:id', validateId, deleteUser);
 
 export default router;

@@ -1,5 +1,5 @@
 // Error Handling Middleware
-// Middleware לטיפול בשגיאות
+// Error handling middleware
 
 // Request Logger
 export const requestLogger = (req, res, next) => {
@@ -7,32 +7,32 @@ export const requestLogger = (req, res, next) => {
   next();
 };
 
-// 404 Handler - כשלא נמצא נתיב
+// 404 Handler - when route not found
 export const notFound = (req, res) => {
   res.status(404).json({ 
     success: false,
-    error: 'נתיב לא נמצא',
+    error: 'Route not found',
     path: req.path 
   });
 };
 
-// Error Handler - טיפול בשגיאות כלליות
+// Error Handler - general error handling
 export const errorHandler = (err, req, res, next) => {
   console.error('Error:', err);
 
-  // שגיאת SQL
+  // SQL error
   if (err.code && err.code.startsWith('ER_')) {
     return res.status(400).json({
       success: false,
-      error: 'שגיאה במסד הנתונים',
+      error: 'Database error',
       details: process.env.NODE_ENV === 'development' ? err.message : undefined
     });
   }
 
-  // שגיאה כללית
+  // General error
   res.status(err.status || 500).json({
     success: false,
-    error: err.message || 'שגיאה בשרת',
+    error: err.message || 'Server error',
     details: process.env.NODE_ENV === 'development' ? err.stack : undefined
   });
 };

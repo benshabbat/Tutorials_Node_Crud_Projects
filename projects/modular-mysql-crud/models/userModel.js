@@ -1,22 +1,22 @@
 // User Model - Database queries
-// מודל המשתמש - שאילתות מסד נתונים
+// User model - database queries
 
 import pool from '../config/db.js';
 
 class User {
-  // קבלת כל המשתמשים
+  // Get all users
   static async getAll() {
     const [rows] = await pool.query('SELECT * FROM users ORDER BY created_at DESC');
     return rows;
   }
 
-  // קבלת משתמש לפי ID
+  // Get user by ID
   static async getById(id) {
     const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
     return rows[0];
   }
 
-  // יצירת משתמש חדש
+  // Create new user
   static async create(userData) {
     const { name, email, age } = userData;
     const [result] = await pool.query(
@@ -26,7 +26,7 @@ class User {
     return result.insertId;
   }
 
-  // עדכון משתמש
+  // Update user
   static async update(id, userData) {
     const { name, email, age } = userData;
     const [result] = await pool.query(
@@ -36,19 +36,19 @@ class User {
     return result.affectedRows > 0;
   }
 
-  // מחיקת משתמש
+  // Delete user
   static async delete(id) {
     const [result] = await pool.query('DELETE FROM users WHERE id = ?', [id]);
     return result.affectedRows > 0;
   }
 
-  // ספירת משתמשים
+  // Count users
   static async count() {
     const [rows] = await pool.query('SELECT COUNT(*) as total FROM users');
     return rows[0].total;
   }
 
-  // סטטיסטיקות
+  // Statistics
   static async getStats() {
     const [countResult] = await pool.query('SELECT COUNT(*) as total FROM users');
     const [avgResult] = await pool.query('SELECT AVG(age) as avgAge FROM users');

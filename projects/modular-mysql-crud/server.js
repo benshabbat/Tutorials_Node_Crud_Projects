@@ -1,10 +1,10 @@
 // Main Server File
-// קובץ השרת הראשי
+// Main server file
 
 import express from 'express';
 import userRoutes from './routes/userRoutes.js';
 import { errorHandler, notFound, requestLogger } from './middleware/errorHandler.js';
-import './config/db.js'; // טוען את החיבור למסד נתונים
+import './config/db.js'; // Load database connection
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,12 +25,12 @@ app.get('/', (req, res) => {
       stats: '/api/users/stats'
     },
     documentation: {
-      'GET /api/users': 'קבל את כל המשתמשים',
-      'GET /api/users/:id': 'קבל משתמש לפי ID',
-      'GET /api/users/stats': 'סטטיסטיקות מסד הנתונים',
-      'POST /api/users': 'צור משתמש חדש (body: name, email, age)',
-      'PUT /api/users/:id': 'עדכן משתמש',
-      'DELETE /api/users/:id': 'מחק משתמש'
+      'GET /api/users': 'Get all users',
+      'GET /api/users/:id': 'Get user by ID',
+      'GET /api/users/stats': 'Database statistics',
+      'POST /api/users': 'Create new user (body: name, email, age)',
+      'PUT /api/users/:id': 'Update user',
+      'DELETE /api/users/:id': 'Delete user'
     }
   });
 });

@@ -1,9 +1,9 @@
 // User Controller - Business logic
-// בקר המשתמש - לוגיקה עסקית
+// User controller - business logic
 
 import User from '../models/userModel.js';
 
-// קבלת כל המשתמשים
+// Get all users
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.getAll();
@@ -13,15 +13,15 @@ export const getAllUsers = async (req, res) => {
       data: users
     });
   } catch (err) {
-    console.error('שגיאה בקבלת משתמשים:', err);
+    console.error('Error getting users:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };
 
-// קבלת משתמש לפי ID
+// Get user by ID
 export const getUserById = async (req, res) => {
   const { id } = req.params;
 
@@ -31,7 +31,7 @@ export const getUserById = async (req, res) => {
     if (!user) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
@@ -40,59 +40,59 @@ export const getUserById = async (req, res) => {
       data: user
     });
   } catch (err) {
-    console.error('שגיאה בקבלת משתמש:', err);
+    console.error('Error getting user:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };
 
-// יצירת משתמש חדש
+// Create new user
 export const createUser = async (req, res) => {
   const { name, email, age } = req.body;
 
-  // ולידציה - מטופל ב-middleware
+  // Validation - handled in middleware
   try {
     const userId = await User.create({ name, email, age });
     const newUser = await User.getById(userId);
 
     res.status(201).json({
       success: true,
-      message: 'משתמש נוסף בהצלחה',
+      message: 'User created successfully',
       data: newUser
     });
   } catch (err) {
-    console.error('שגיאה בהוספת משתמש:', err);
+    console.error('Error creating user:', err);
 
-    // טיפול בשגיאת אימייל כפול
+    // Handle duplicate email error
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false,
-        error: 'אימייל כבר קיים במערכת' 
+        error: 'Email already exists' 
       });
     }
 
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };
 
-// עדכון משתמש
+// Update user
 export const updateUser = async (req, res) => {
   const { id } = req.params;
   const { name, email, age } = req.body;
 
-  // ולידציה - מטופל ב-middleware
+  // Validation - handled in middleware
   try {
     const updated = await User.update(id, { name, email, age });
 
     if (!updated) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
@@ -100,60 +100,60 @@ export const updateUser = async (req, res) => {
 
     res.json({
       success: true,
-      message: 'משתמש עודכן בהצלחה',
+      message: 'User updated successfully',
       data: updatedUser
     });
   } catch (err) {
-    console.error('שגיאה בעדכון משתמש:', err);
+    console.error('Error updating user:', err);
 
-    // טיפול בשגיאת אימייל כפול
+    // Handle duplicate email error
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false,
-        error: 'אימייל כבר קיים במערכת' 
+        error: 'Email already exists' 
       });
     }
 
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };
 
-// מחיקת משתמש
+// Delete user
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // קבלת המשתמש לפני המחיקה
+    // Get user before deletion
     const user = await User.getById(id);
 
     if (!user) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
-    // מחיקת המשתמש
+    // Delete user
     await User.delete(id);
 
     res.json({
       success: true,
-      message: 'משתמש נמחק בהצלחה',
+      message: 'User deleted successfully',
       data: user
     });
   } catch (err) {
-    console.error('שגיאה במחיקת משתמש:', err);
+    console.error('Error deleting user:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };
 
-// סטטיסטיקות
+// Statistics
 export const getUserStats = async (req, res) => {
   try {
     const stats = await User.getStats();
@@ -162,10 +162,10 @@ export const getUserStats = async (req, res) => {
       data: stats
     });
   } catch (err) {
-    console.error('שגיאה בקבלת סטטיסטיקות:', err);
+    console.error('Error getting statistics:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 };

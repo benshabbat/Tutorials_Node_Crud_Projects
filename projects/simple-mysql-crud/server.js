@@ -1,5 +1,5 @@
 // 📂 Simple MySQL CRUD - All in One File
-// שרת Express פשוט עם MySQL - כל הקוד בקובץ אחד
+// Simple Express server with MySQL - all code in one file
 
 import express from 'express';
 import mysql from 'mysql2/promise';
@@ -26,15 +26,15 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-// בדיקת חיבור
+// Test connection
 pool.getConnection()
   .then(connection => {
-    console.log('✅ חיבור למסד נתונים הצליח!');
+    console.log('✅ Connected to database successfully!');
     connection.release();
   })
   .catch(err => {
-    console.error('❌ שגיאה בחיבור למסד נתונים:', err.message);
-    console.log('💡 וודא ש-MySQL רץ ושהגדרות החיבור ב-.env נכונות');
+    console.error('❌ Database connection error:', err.message);
+    console.log('💡 Make sure MySQL is running and .env settings are correct');
   });
 
 // ===================================
@@ -53,13 +53,13 @@ async function setupDatabase() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
-    console.log('✅ הטבלה users מוכנה');
+    console.log('✅ Users table is ready');
   } catch (err) {
-    console.error('❌ שגיאה ביצירת טבלה:', err.message);
+    console.error('❌ Error creating table:', err.message);
   }
 }
 
-// הפעלת הגדרת מסד הנתונים
+// Initialize database setup
 setupDatabase();
 
 // ===================================
@@ -77,17 +77,17 @@ app.get('/', (req, res) => {
       stats: '/api/stats'
     },
     documentation: {
-      'GET /api/users': 'קבל את כל המשתמשים',
-      'GET /api/users/:id': 'קבל משתמש לפי ID',
-      'POST /api/users': 'צור משתמש חדש (body: name, email, age)',
-      'PUT /api/users/:id': 'עדכן משתמש',
-      'DELETE /api/users/:id': 'מחק משתמש',
-      'GET /api/stats': 'סטטיסטיקות מסד הנתונים'
+      'GET /api/users': 'Get all users',
+      'GET /api/users/:id': 'Get user by ID',
+      'POST /api/users': 'Create new user (body: name, email, age)',
+      'PUT /api/users/:id': 'Update user',
+      'DELETE /api/users/:id': 'Delete user',
+      'GET /api/stats': 'Database statistics'
     }
   });
 });
 
-// 📊 GET /api/stats - סטטיסטיקות
+// 📊 GET /api/stats - Statistics
 app.get('/api/stats', async (req, res) => {
   try {
     const [countResult] = await pool.query('SELECT COUNT(*) as total FROM users');
@@ -103,12 +103,12 @@ app.get('/api/stats', async (req, res) => {
       maxAge: minMaxResult[0].maxAge
     });
   } catch (err) {
-    console.error('שגיאה בקבלת סטטיסטיקות:', err);
-    res.status(500).json({ error: 'שגיאה בשרת' });
+    console.error('Error getting statistics:', err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
-// 📖 GET /api/users - קבלת כל המשתמשים
+// 📖 GET /api/users - Get all users
 app.get('/api/users', async (req, res) => {
   try {
     const [users] = await pool.query('SELECT * FROM users ORDER BY created_at DESC');
@@ -119,15 +119,15 @@ app.get('/api/users', async (req, res) => {
       data: users
     });
   } catch (err) {
-    console.error('שגיאה בקבלת משתמשים:', err);
+    console.error('Error getting users:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 });
 
-// 📖 GET /api/users/:id - קבלת משתמש לפי ID
+// 📖 GET /api/users/:id - Get user by ID
 app.get('/api/users/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -140,7 +140,7 @@ app.get('/api/users/:id', async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
@@ -149,40 +149,40 @@ app.get('/api/users/:id', async (req, res) => {
       data: users[0]
     });
   } catch (err) {
-    console.error('שגיאה בקבלת משתמש:', err);
+    console.error('Error getting user:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 });
 
-// ➕ POST /api/users - הוספת משתמש חדש
+// ➕ POST /api/users - Create new user
 app.post('/api/users', async (req, res) => {
   const { name, email, age } = req.body;
 
-  // ולידציה בסיסית
+  // Basic validation
   if (!name || !email) {
     return res.status(400).json({ 
       success: false,
-      error: 'שם ואימייל הם שדות חובה' 
+      error: 'Name and email are required' 
     });
   }
 
-  // בדיקת אימייל תקין
+  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ 
       success: false,
-      error: 'אימייל לא תקין' 
+      error: 'Invalid email format' 
     });
   }
 
-  // בדיקת גיל תקין
+  // Validate age
   if (age && (age < 0 || age > 150)) {
     return res.status(400).json({ 
       success: false,
-      error: 'גיל לא תקין' 
+      error: 'Invalid age' 
     });
   }
 
@@ -192,7 +192,7 @@ app.post('/api/users', async (req, res) => {
       [name, email, age || null]
     );
 
-    // קבלת המשתמש שנוצר
+    // Get created user
     const [newUser] = await pool.query(
       'SELECT * FROM users WHERE id = ?',
       [result.insertId]
@@ -200,54 +200,54 @@ app.post('/api/users', async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'משתמש נוסף בהצלחה',
+      message: 'User created successfully',
       data: newUser[0]
     });
   } catch (err) {
-    console.error('שגיאה בהוספת משתמש:', err);
+    console.error('Error creating user:', err);
     
-    // טיפול בשגיאת אימייל כפול
+    // Handle duplicate email error
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false,
-        error: 'אימייל כבר קיים במערכת' 
+        error: 'Email already exists' 
       });
     }
 
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 });
 
-// ✏️ PUT /api/users/:id - עדכון משתמש
+// ✏️ PUT /api/users/:id - Update user
 app.put('/api/users/:id', async (req, res) => {
   const { id } = req.params;
   const { name, email, age } = req.body;
 
-  // ולידציה בסיסית
+  // Basic validation
   if (!name || !email) {
     return res.status(400).json({ 
       success: false,
-      error: 'שם ואימייל הם שדות חובה' 
+      error: 'Name and email are required' 
     });
   }
 
-  // בדיקת אימייל תקין
+  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ 
       success: false,
-      error: 'אימייל לא תקין' 
+      error: 'Invalid email format' 
     });
   }
 
-  // בדיקת גיל תקין
+  // Validate age
   if (age && (age < 0 || age > 150)) {
     return res.status(400).json({ 
       success: false,
-      error: 'גיל לא תקין' 
+      error: 'Invalid age' 
     });
   }
 
@@ -260,11 +260,11 @@ app.put('/api/users/:id', async (req, res) => {
     if (result.affectedRows === 0) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
-    // קבלת המשתמש המעודכן
+    // Get updated user
     const [updatedUser] = await pool.query(
       'SELECT * FROM users WHERE id = ?',
       [id]
@@ -272,33 +272,33 @@ app.put('/api/users/:id', async (req, res) => {
 
     res.json({
       success: true,
-      message: 'משתמש עודכן בהצלחה',
+      message: 'User updated successfully',
       data: updatedUser[0]
     });
   } catch (err) {
-    console.error('שגיאה בעדכון משתמש:', err);
+    console.error('Error updating user:', err);
 
-    // טיפול בשגיאת אימייל כפול
+    // Handle duplicate email error
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false,
-        error: 'אימייל כבר קיים במערכת' 
+        error: 'Email already exists' 
       });
     }
 
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 });
 
-// 🗑️ DELETE /api/users/:id - מחיקת משתמש
+// 🗑️ DELETE /api/users/:id - Delete user
 app.delete('/api/users/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    // קבלת המשתמש לפני המחיקה
+    // Get user before deletion
     const [users] = await pool.query(
       'SELECT * FROM users WHERE id = ?',
       [id]
@@ -307,25 +307,25 @@ app.delete('/api/users/:id', async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({ 
         success: false,
-        error: 'משתמש לא נמצא' 
+        error: 'User not found' 
       });
     }
 
     const deletedUser = users[0];
 
-    // מחיקת המשתמש
+    // Delete user
     await pool.query('DELETE FROM users WHERE id = ?', [id]);
 
     res.json({
       success: true,
-      message: 'משתמש נמחק בהצלחה',
+      message: 'User deleted successfully',
       data: deletedUser
     });
   } catch (err) {
-    console.error('שגיאה במחיקת משתמש:', err);
+    console.error('Error deleting user:', err);
     res.status(500).json({ 
       success: false,
-      error: 'שגיאה בשרת' 
+      error: 'Server error' 
     });
   }
 });
@@ -336,7 +336,7 @@ app.delete('/api/users/:id', async (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ 
     success: false,
-    error: 'נתיב לא נמצא' 
+    error: 'Route not found' 
   });
 });
 

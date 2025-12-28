@@ -1,10 +1,10 @@
 // Database Configuration and Connection Pool
-// קובץ ניהול החיבור למסד הנתונים
+// Database connection management file
 
 import mysql from 'mysql2/promise';
 import 'dotenv/config';
 
-// יצירת Connection Pool
+// Create Connection Pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -16,18 +16,18 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-// בדיקת חיבור
+// Test connection
 pool.getConnection()
   .then(connection => {
-    console.log('✅ חיבור למסד נתונים הצליח!');
+    console.log('✅ Connected to database successfully!');
     connection.release();
   })
   .catch(err => {
-    console.error('❌ שגיאה בחיבור למסד נתונים:', err.message);
-    console.log('💡 וודא ש-MySQL רץ ושהגדרות החיבור ב-.env נכונות');
+    console.error('❌ Database connection error:', err.message);
+    console.log('💡 Make sure MySQL is running and .env settings are correct');
   });
 
-// יצירת טבלאות
+// Create tables
 async function setupDatabase() {
   try {
     await pool.query(`
@@ -40,13 +40,13 @@ async function setupDatabase() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
-    console.log('✅ הטבלה users מוכנה');
+    console.log('✅ Users table is ready');
   } catch (err) {
-    console.error('❌ שגיאה ביצירת טבלה:', err.message);
+    console.error('❌ Error creating table:', err.message);
   }
 }
 
-// הפעלת הגדרת מסד הנתונים
+// Initialize database setup
 setupDatabase();
 
 export default pool;
