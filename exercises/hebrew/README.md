@@ -73,6 +73,47 @@
 
 ---
 
+### [mysql-beginner-exercises.md](mysql-beginner-exercises.md) 🌱 **חדש!**
+תרגילי MySQL למתחילים מוחלטים - צעד אחר צעד:
+0. **הכנה והגדרה** - התקנה ראשונית
+1. **בדיקת חיבור** - קוד הכי פשוט
+2. **יצירת בסיס נתונים** - מתחילים עם books_db
+3. **יצירת טבלה** - טבלת ספרים פשוטה
+4. **הוספת ספר** - INSERT ראשון
+5. **קריאת נתונים** - SELECT של כל הספרים
+6. **הוספת ספרים מרובים** - לולאה
+7. **חיפוש** - WHERE לסינון
+8. **עדכון** - UPDATE מספר עמודים
+9. **מחיקה** - DELETE ספר
+10. **ספירה** - COUNT ופונקציות
+
+**מתאים למי ש:**
+- מתחילים לגמרי עם MySQL
+- רוצים הסבר על כל שורת קוד
+- צריכים תרגילים קצרים וממוקדים
+
+---
+
+### [mysql-simple-exercises.md](mysql-simple-exercises.md) 📚 **חדש!**
+8 תרגילי MySQL פשוטים עם הדרכה מפורטת:
+1. **התחברות ראשונה** - בדיקת גרסה
+2. **יצירת DB וטבלה** - students_db
+3. **הוספת נתונים** - INSERT סטודנט
+4. **קריאת נתונים** - SELECT הכל
+5. **חיפוש עם WHERE** - סינון לפי תנאים
+6. **עדכון נתונים** - UPDATE סטודנט
+7. **מחיקת נתונים** - DELETE בבטחה
+8. **API עם Express** - CRUD מלא
+
+**בונוס:**
+- ספירה (COUNT)
+- ממוצע (AVG)
+- מיון (ORDER BY)
+- הגבלה (LIMIT)
+- טיפול בשגיאות נפוצות
+
+---
+
 ## איך לתרגל?
 
 1. **קרא את התרגיל** - הבן מה מבוקש
